@@ -5,7 +5,12 @@ for file in */ .*/ ; do
     	echo ''
     	echo "$(tput setaf 3)--- $file ---$(tput sgr0)"
         cd $file
-       git commit -m "$1"
-       cd ../
+        if [ -z "$(git status --porcelain)" ]; then
+				echo 'Nothing to commit.'
+		else
+			git add -A
+       		git commit -m "$1"
+		fi
+    	cd ../
     fi
 done
