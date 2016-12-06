@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 for file in */ .*/ ; do
-	if [ -d $file.git ]; then
+	if [ -d $file.git ] && [ "$file" != "moovly-prototype/" ]; then
 		echo ''
 		echo "$(tput setaf 3)--- $file ---$(tput sgr0)"
 		cd $file

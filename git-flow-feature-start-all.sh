@@ -9,6 +9,8 @@ for file in */ .*/ ; do
 		if [ -f "package.json" ]; then
 			sed '/git@github.com:Moovly/s/.git#.*/\.git#feature\\\/'$1'\",/' <package.json >tmp.json
 			mv tmp.json package.json
+			sed '/git@github.com:mono-company/s/.git#.*/\.git#'$1'\",/' <package.json >tmp.json
+			mv tmp.json package.json
 			if [ -z "$(git status --porcelain)" ]; then
 				echo 'Nothing to commit.'
 			else
